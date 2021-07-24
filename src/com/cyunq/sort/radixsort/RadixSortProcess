@@ -1,0 +1,82 @@
+        //逐步推到
+        //第一轮,针对每个元素的各位进行排序
+        //定义一个一位数组，表示10个桶，每个桶都是一个一维数组
+        //为了防止在存放数据时溢出，每个一位数组，大小定义为arr.length
+        //基数排序，就是使用空间换时间
+        int[][] bucket = new int[10][arr.length];
+
+        //记录每个桶放了多少数据,定义一个一维数组，来记录每次放入的数据个数
+        int[] bucketElementCounts = new int[10];
+
+        //=====================================================================>
+        //第一轮
+        for (int j = 0; j < arr.length; j++) {
+            //取出每个元素的个位数
+            int digitOfElement = arr[j] % 10;
+            bucket[digitOfElement][bucketElementCounts[digitOfElement]] = arr[j];
+            bucketElementCounts[digitOfElement]++;
+        }
+        //按照这个桶的顺序（一位数组的下标一次取出数据，放入原来的数组）
+        int index = 0;
+        //遍历每一个桶，并将桶中的数据，放入到原来的数组
+        for (int k = 0; k < bucketElementCounts.length; k++) {
+            //如果桶中有数据，才放入到原数组
+            if (bucketElementCounts[k] != 0) {
+                //循环该桶
+                for (int l = 0; l < bucketElementCounts[k]; l++) {
+                    //取出原数，放入到Array中
+                    arr[index++] = bucket[k][l];
+                }
+            }
+            //将原来的桶清空
+            bucketElementCounts[k] = 0;
+        }
+        System.out.println("First Round: " + Arrays.toString(arr));
+
+        //=====================================================================>
+        //第二轮 对十位进行处理
+        index = 0;
+        for (int j = 0; j < arr.length; j++) {
+            //取出每个元素的个位数
+            int digitOfElement = arr[j] / 10 % 10;
+            bucket[digitOfElement][bucketElementCounts[digitOfElement]] = arr[j];
+            bucketElementCounts[digitOfElement]++;
+        }
+        //按照这个桶的顺序（一位数组的下标一次取出数据，放入原来的数组）
+        //遍历每一个桶，并将桶中的数据，放入到原来的数组
+        for (int k = 0; k < bucketElementCounts.length; k++) {
+            //如果桶中有数据，才放入到原数组
+            if (bucketElementCounts[k] != 0) {
+                //循环该桶
+                for (int l = 0; l < bucketElementCounts[k]; l++) {
+                    //取出原数，放入到Array中
+                    arr[index++] = bucket[k][l];
+                }
+            }
+            bucketElementCounts[k] = 0;
+        }
+        System.out.println("Second Round: " + Arrays.toString(arr));
+
+        //=====================================================================>
+        //第三轮 对百位进行处理
+        index = 0;
+        for (int j = 0; j < arr.length; j++) {
+            //取出每个元素的个位数
+            int digitOfElement = arr[j] / 10 /10 % 10;
+            bucket[digitOfElement][bucketElementCounts[digitOfElement]] = arr[j];
+            bucketElementCounts[digitOfElement]++;
+        }
+        //按照这个桶的顺序（一位数组的下标一次取出数据，放入原来的数组）
+        //遍历每一个桶，并将桶中的数据，放入到原来的数组
+        for (int k = 0; k < bucketElementCounts.length; k++) {
+            //如果桶中有数据，才放入到原数组
+            if (bucketElementCounts[k] != 0) {
+                //循环该桶
+                for (int l = 0; l < bucketElementCounts[k]; l++) {
+                    //取出原数，放入到Array中
+                    arr[index++] = bucket[k][l];
+                }
+            }
+            bucketElementCounts[k] = 0;
+        }
+        System.out.println("Third Round: " + Arrays.toString(arr));
