@@ -1,9 +1,6 @@
 package com.cyunq.tree.huffmancoding;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.util.*;
 
 public class HuffmanCode {
@@ -26,10 +23,24 @@ public class HuffmanCode {
         System.out.println(resUnzip);*/
 
         //测试压缩文件
+        zipFile();
+
+        //测试解压文件
+//        unzipFile();
+    }
+
+    public static void zipFile(){
         String srcFile = "src/com/cyunq/tree/huffmancoding/src.bmp";
         String destFile = "src/com/cyunq/tree/huffmancoding/src.zip";
         zipFile(srcFile,destFile);
         System.out.println("Zip completed!");
+    }
+
+    public static void unzipFile(){
+        String zipFile = "src/com/cyunq/tree/huffmancoding/src.zip";
+        String destFile = "src/com/cyunq/tree/huffmancoding/src.bmp";
+        unzipFile(zipFile,destFile);
+        System.out.println("Unzip completed!");
     }
 
     /**
@@ -283,6 +294,42 @@ public class HuffmanCode {
                     fileOutputStream.close();
                 }
             } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static void unzipFile(String zipFile, String destFile){
+
+        FileInputStream is = null;
+        ObjectInputStream ois = null;
+        FileOutputStream os = null;
+        try{
+            is = new FileInputStream(zipFile);
+            ois = new ObjectInputStream(is);
+            byte[] huffmanByte = (byte[]) ois.readObject();
+            Map<Byte,String> codes = (Map<Byte,String>) ois.readObject();
+
+            byte[] bytes = decode(codes, huffmanByte);
+            os = new FileOutputStream(destFile);
+            os.write(bytes);
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        finally {
+
+            try{
+                if (os != null){
+                    os.close();
+                }
+                if (ois != null){
+                    ois.close();
+                }
+                if (is != null){
+                    is.close();
+                }
+            }catch (Exception e){
                 e.printStackTrace();
             }
         }
