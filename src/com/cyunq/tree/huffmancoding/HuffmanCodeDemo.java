@@ -16,6 +16,9 @@ public class HuffmanCodeDemo {
         byte[] res = huffmanZip(contentByte);
         System.out.println(Arrays.toString(res));
 
+        System.out.println(byteToBitString(true,(byte)-88));;
+
+        System.out.println(new String(decode(huffmanCodes, res)));
     }
 
     private static Map<Byte,String> getCodes(HuffmanNode root){
@@ -159,4 +162,115 @@ public class HuffmanCodeDemo {
         huffmanCodes = getCodes(huffmanTree);
         return zip(bytes, huffmanCodes);
     }
+
+    /**
+     * 将一个byte转成一个二进制字符串
+     * @param flag 如果是true 表示需要补高位，表示不需要补高位
+     * @param b 待处理的byte
+     * @return b 对应的二进制字符串(按补码返回的)
+     */
+    private static String byteToBitString(boolean flag, byte b){
+
+        int temp = b;
+        //按位与 256  1 0000 0000  |  0000 0001 = 1 0000 00001
+        // int temp = b?
+        if (flag){
+            temp |= 256;
+        }
+        String str = Integer.toBinaryString(temp);
+        if (flag){
+            return str.substring(str.length()-8);
+        }else {
+            return str;
+        }
+    }
+
+    /**
+     *
+     * @param huffmanCodes 原本使用的赫夫曼编码表
+     * @param huffmanBytes 接收到的数组
+     * @return 返回原来的字符串对应的数组
+     */
+    private static byte[] decode(Map<Byte,String> huffmanCodes, byte[] huffmanBytes){
+
+        //1. 先得到huffmanBytes 对应的二进制的字符串
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < huffmanBytes.length; i++) {
+            boolean flag = (i == huffmanBytes.length-1);
+            stringBuilder.append(byteToBitString(!flag, huffmanBytes[i]));
+        }
+
+        //把字符串按，赫夫曼编码进行解码
+        //反向原来的HashMap
+        Map<String, Byte> map = new HashMap<>();
+        for (Map.Entry<Byte,String> entry : huffmanCodes.entrySet()){
+            map.put(entry.getValue(), entry.getKey());
+        }
+
+        //创建集合存放byte
+        ArrayList<Byte> list = new ArrayList<>();
+        for (int i = 0; i < stringBuilder.length();) {//i 就是一个索引, 不停的扫描
+            int count = 1;
+            boolean flag = true;
+            Byte b = null;
+
+            while (flag){
+                //1010100010111
+                //递增的取出key
+                String key = stringBuilder.substring(i, i + count);//i不一定，count移动,直到匹配到一个字符
+                b = map.get(key);
+                if (b == null){
+                    count++;
+                }else {
+                    flag = false;
+                }
+            }
+            list.add(b);
+            i += count;
+        }
+        byte[] b = new byte[list.size()];
+        for (int i = 0; i < b.length; i++) {
+            b[i] = list.get(i);
+        }
+        System.out.println("Byte : " + Arrays.toString(b));
+        return b;
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
