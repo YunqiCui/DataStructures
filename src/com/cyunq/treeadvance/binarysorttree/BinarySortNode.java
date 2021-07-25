@@ -1,7 +1,5 @@
 package com.cyunq.treeadvance.binarysorttree;
 
-import com.cyunq.treeadvance.huffmantree.Node;
-
 public class BinarySortNode {
     public int value;
     public BinarySortNode left;
@@ -41,6 +39,9 @@ public class BinarySortNode {
         }
     }
 
+    /**
+     * 中序排序二叉排序树
+     */
     public void infixOrder() {
         if (this.left != null) {
             this.left.infixOrder();
@@ -51,5 +52,39 @@ public class BinarySortNode {
         }
     }
 
+
+    /**
+     *
+     * @param value 查找的节点值
+     * @return 返回找到的节点，如果树中不存在则返回null
+     */
+    public BinarySortNode search(int value){
+        if (value == this.value){//找到了，就是该节点
+            return this;
+        }else if(value < this.value && this.left != null){
+            return this.left.search(value);
+        }else if (value >= this.value && this.right != null){
+            return this.right.search(value);
+        }else {
+            return null;
+        }
+    }
+
+    /**
+     *
+     * @param value 要找的节点值
+     * @return 返回value节点的父节点，如果没有则返回null
+     */
+    public BinarySortNode searchParent(int value){
+        if ((this.left != null && this.left.value == value) || (this.right != null && this.right.value == value)){
+            return this;
+        }else if (value < this.value && this.left != null){
+            return this.left.searchParent(value);
+        }else if (value >= this.value && this.right != null){
+            return this.right.searchParent(value);
+        }else{
+            return null;
+        }
+    }
 
 }
