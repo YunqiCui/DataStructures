@@ -2,7 +2,7 @@ package com.cyunq.tree.huffmancoding;
 
 import java.util.*;
 
-public class HuffmanCodeDemo {
+public class HuffmanCode {
 
     static Map<Byte, String> huffmanCodes = new HashMap<>();
     static StringBuilder stringBuilder = new StringBuilder();
