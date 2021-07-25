@@ -1,4 +1,4 @@
-package com.cyunq.tree.huffmantree;
+package com.cyunq.treeadvance.huffmantree;
 
 /**
  * 实现Comparable 接口 达成排序的作用

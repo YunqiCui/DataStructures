@@ -1,6 +1,4 @@
-package com.cyunq.tree.arraybinarytree;
-
-import com.cyunq.tree.binarytree.BinaryTree;
+package com.cyunq.treebasic.arraybinarytree;
 
 public class ArrayBinaryTreeDemo {
     public static void main(String[] args) {

@@ -1,6 +1,4 @@
-package com.cyunq.tree.huffmancoding;
-
-import com.cyunq.tree.huffmantree.Node;
+package com.cyunq.treeadvance.huffmancoding;
 
 public class HuffmanNode implements Comparable<HuffmanNode>{
     Byte data;

@@ -1,4 +1,4 @@
-package com.cyunq.tree.binarytree;
+package com.cyunq.treebasic.binarytree;
 
 public class HeroNode {
     private int no;

@@ -1,4 +1,4 @@
-package com.cyunq.tree.huffmantree;
+package com.cyunq.treeadvance.huffmantree;
 
 import java.util.ArrayList;
 import java.util.Collections;

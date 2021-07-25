@@ -1,4 +1,4 @@
-package com.cyunq.tree.heapsort;
+package com.cyunq.treeadvance.heapsort;
 
 import java.util.Arrays;
 

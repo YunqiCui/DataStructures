@@ -1,4 +1,4 @@
-package com.cyunq.tree.threadedbinarytree;
+package com.cyunq.treebasic.threadedbinarytree;
 
 /**
  * 测试

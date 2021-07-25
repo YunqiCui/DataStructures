@@ -1,7 +1,7 @@
-package com.cyunq.tree.threadedbinarytree;
+package com.cyunq.treebasic.threadedbinarytree;
 
-import com.cyunq.tree.binarytree.BinaryTree;
-import com.cyunq.tree.binarytree.HeroNode;
+import com.cyunq.treebasic.binarytree.BinaryTree;
+import com.cyunq.treebasic.binarytree.HeroNode;
 
 public class ThreadedBinaryTree extends BinaryTree {
     //指向前驱节点的指针

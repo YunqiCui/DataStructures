@@ -1,7 +1,7 @@
-package com.cyunq.tree.threadedbinarytree;
+package com.cyunq.treebasic.threadedbinarytree;
 
 
-import com.cyunq.tree.binarytree.HeroNode;
+import com.cyunq.treebasic.binarytree.HeroNode;
 
 public class ThreadedNode extends HeroNode {
 

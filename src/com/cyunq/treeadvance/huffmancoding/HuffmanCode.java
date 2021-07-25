@@ -1,4 +1,4 @@
-package com.cyunq.tree.huffmancoding;
+package com.cyunq.treeadvance.huffmancoding;
 
 import java.io.*;
 import java.util.*;

@@ -1,4 +1,4 @@
-package com.cyunq.tree.arraybinarytree;
+package com.cyunq.treebasic.arraybinarytree;
 
 public class ArrayBinaryTree {
     private int[] arr;
