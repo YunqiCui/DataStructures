@@ -1,7 +1,6 @@
-package com.cyunq.huffmantree;
+package com.cyunq.tree.huffmantree;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 
 public class HuffmanTree {
