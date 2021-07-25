@@ -3,7 +3,7 @@ package com.cyunq.tree.huffmantree;
 /**
  * 实现Comparable 接口 达成排序的作用
  */
-public class Node implements Comparable<Node>{
+public class Node implements Comparable<Node> {
     public int value;
     public Node left;
     public Node right;
