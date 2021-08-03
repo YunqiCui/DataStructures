@@ -86,5 +86,4 @@ public class BinarySortNode {
             return null;
         }
     }
-
 }
