@@ -1,0 +1,14 @@
+  //逐步推导
+        //第一轮 {101,34,119,1}
+        int insertVal = arr[1];
+
+        int insertIndex = 0;
+        //1. 在给insertval找插入位置时，不越界。
+        //2. 待插入数据还没有找到位置
+        //3. 将insertIndex值往后移动
+        while (insertIndex >= 0 && insertVal<arr[insertIndex]){
+            arr[insertIndex+1] = arr[insertIndex];//{101,101,119,1}
+            insertIndex--;
+        }
+        //当退出while循环时，说明插入的位置找到 insertVal + 1
+        arr[insertIndex+1] = insertVal;
